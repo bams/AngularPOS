@@ -1,0 +1,94 @@
+<!doctype html>
+<html ng-app="orderApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <!-- Bootstrap Core CSS -->
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+    <script src="static/js/order.js"></script>
+  </head>
+  <body>
+  
+    
+    <!-- Content Area -->
+    <!-- Page Content -->
+    <div class="container" ng-controller="OrderListController as orderList">
+      
+        <div class="row">
+          
+            <div class="col-xs-6 text-center">
+                <h3>Order Details</h3>
+                <div class="well">
+                  
+                    <li ng-repeat="item in orderList.order track by $index">
+                          <p>{[{item.name}]} - ${[{item.price}]} - {[{item.id}]}</p>
+                          <p>{[{item}]}</p>
+                    </li>
+                    
+                </div>
+                
+                <h3>Seat Controls</h3>
+                
+                <div class="well">
+                  
+                    <div class="row">
+                      <p>Seat Selected: {[{orderList.currentSeat}]}</p>
+                      <div ng-repeat="s in orderList.seats">
+                          <div class="col-xs-2">
+                              <button ng-click="orderList.currentSeat = s;" class="{[{orderList.selectionStyle(s)}]}">{[{s}]}</button><br>
+                          </div>
+                       
+                      </div>
+                      
+                    </div>
+                    
+                    <button ng-click="orderList.seats.addSeat()" class="btn btn-success" >Add Seat</button>
+                    <button ng-click="orderList.seats.deleteSeat()" class="btn btn-warning" >Delete Seat</button>
+                </div>
+            </div>
+            
+            <div class="col-xs-2 text-center">
+                <h3>Categories</h3>
+                <div class="well">
+                    <div ng-repeat="c in {{categories.categories}}">
+                      <button class="btn btn-success btn-block" >{[{c}]}</button>
+                        <br>    
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-xs-4 text-center">
+                <h3>Input Buttons</h3>
+                <div class="well">
+                    <div ng-repeat="item in {{menu['items']}}">
+                          <button class="btn btn-success btn-block" >{[{item.name}]}</button><br>
+                    </div>
+                </div>
+            </div>
+            
+        <!-- /.row -->
+        </div>
+        
+    </div>
+    <!-- /.container -->
+    
+    
+    
+
+    <!-- jQuery Version 1.11.1 -->
+    <script src="static/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="static/js/bootstrap.min.js"></script>
+    
+    
+  
+   
+  </body>
+</html>
