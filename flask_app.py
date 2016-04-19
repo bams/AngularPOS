@@ -5,6 +5,7 @@ from flask import render_template, flash, redirect, request, url_for, abort, sen
 import sqlite3
 from sqlite3 import OperationalError
 from flask import g
+import json
 
 app = Flask(__name__)
 app.secret_key = 'itsasecret'
@@ -122,6 +123,28 @@ cats = {'categories':uCats}
 def main():
     return render_template('rPOS.html', menu=menu, menu2=menu2, categories=cats)
 
+
+@app.route('/send_order', methods=['POST', 'GET'])
+def take_order():
+    if request.method == 'GET':
+        return render_template('rPOS.html', menu=menu, menu2=menu2, categories=cats)
+    else:
+        order = json.loads(request.data)
+
+        #
+        # ORDER SCHEMA
+        #
+        # order = [
+        #   {'seat':seat number,
+        #   'item':{item object},}
+        #       ]
+        #
+        # Assigned seat numbers to items so we can split the checks
+        # by seat number when needed.
+        #
+        print order
+        return 'true'
+    
 if __name__ == "__main__":
 
     app.run(debug=True)

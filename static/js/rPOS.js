@@ -70,8 +70,15 @@ app = angular.module('rPOSapp', [])
     };
     
     rPOS.sendOrder = function() {
-      alert('The order array was sent to print at the console. Check it out, all the items have a seat assignment for splitting the check!');
       console.log(rPOS.order);
+      var url = "/send_order";
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+        // send the collected data as JSON
+        xhr.send(JSON.stringify(rPOS.order));
+        alert('The order array was sent to the console and Flask. Now I will reload this page so you can input more orders.');
+        location.reload();
     };
     
     //bootstrap styling for category buttons
