@@ -70,7 +70,8 @@ app = angular.module('rPOSapp', [])
     };
     
     rPOS.sendOrder = function() {
-      alert('Order sent!');
+      alert('The order array was sent to print at the console. Check it out, all the items have a seat assignment for splitting the check!');
+      console.log(rPOS.order);
     };
     
     //bootstrap styling for category buttons

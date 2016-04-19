@@ -98,7 +98,13 @@ menu2 = {
         
         'Drinks':[{
             'name':'Soda',
-            'price':2.50},],}
+            'price':2.50},
+                  {
+            'name':'Beer',
+            'price':6.50},
+                  {
+            'name':'Water',
+            'price':0},],}
     }
 
 menu2['all_categories'] = [i for i in menu2['categories']]
