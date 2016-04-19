@@ -77,6 +77,32 @@ menu = {
               'price':2.50,
               'category':['drinks', 'most popular',]}]}
 
+menu2 = {
+    'categories':{
+        'Sandwiches':[{
+            'name':'Burger',
+            'price':12.50 },
+                      {
+            'name':'Gyro',
+            'price':9.75},
+                      {
+            'name':'Turkey',
+            'price':10.89},],
+        
+        'Sides':[{
+            'name':'Fries',
+            'price':3.25},
+                 {
+            'name':'Side Salad',
+            'price':4.50},],
+        
+        'Drinks':[{
+            'name':'Soda',
+            'price':2.50},],}
+    }
+
+menu2['all_categories'] = [i for i in menu2['categories']]
+
 catList = [item['category'] for item in menu['items']]
 uCats = []
 for l in catList:
@@ -87,13 +113,8 @@ for l in catList:
 cats = {'categories':uCats}
 
 @app.route('/')
-def index():
-    
-    return render_template("index.html", categories=cats, menu=menu)
-
-@app.route('/test')
-def test():
-    return render_template('pos.html', menu=menu, categories=cats)
+def main():
+    return render_template('rPOS.html', menu=menu, menu2=menu2, categories=cats)
 
 if __name__ == "__main__":
 

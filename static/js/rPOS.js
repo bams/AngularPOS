@@ -1,0 +1,92 @@
+//so I can use .last() method to return last element in javascript array
+if (!Array.prototype.last){
+    Array.prototype.last = function(){
+        return this[this.length - 1];
+    };
+};
+
+//init angular app
+app = angular.module('rPOSapp', [])
+  .controller('rPOSController', function() {
+    var rPOS = this;
+    
+    //set some vars
+    rPOS.seats = [1,];
+    rPOS.currentSeat = 1;
+    rPOS.order = [];
+    rPOS.total = 0;
+    rPOS.currentCategory = "pick a category";
+    
+    //alert some shit
+    rPOS.alert = function(message) {
+      alert(message);
+    };
+    
+    //category and button view controls
+    rPOS.populateButtons = function(c) {
+       rPOS.categoryView = menu2.categories[c];
+    };
+    
+    rPOS.categoryView = function(cat) {
+      console.log(cat);
+    };
+    
+    //seat controls
+    rPOS.seats.addSeat = function() {
+      rPOS.seats.push((rPOS.seats.last()+1));
+    };
+      
+    rPOS.seats.deleteSeat = function() {
+      //check if length is greater than 1
+      if (rPOS.seats.length > 1) {
+        //NEEDED: check if seat has items assigned to it
+        rPOS.seats.pop();
+        rPOS.currentSeat = 1;
+      };
+    };
+    
+    //bootstrap styling for seat buttons
+    rPOS.selectionStyle = function(num) {
+      if (num==rPOS.currentSeat) {
+        return "btn btn-success btn-block";
+      };
+        return "btn btn-block";
+    };
+    
+    //order controls
+    rPOS.addToOrder = function(item) {
+      console.log(item.name + " added to order")
+      var orderItem = {
+        'item':item,
+        'seat':rPOS.currentSeat
+      }
+      rPOS.order.push(orderItem);
+      rPOS.total += item.price;
+    };
+    
+    rPOS.clearOrder = function() {
+      rPOS.order = [];
+      location.reload();
+    };
+    
+    rPOS.sendOrder = function() {
+      alert('Order sent!');
+    };
+    
+    //bootstrap styling for category buttons
+    rPOS.categoryStyle = function(category) {
+      if (category==rPOS.currentCategory) {
+        return "btn btn-success btn-block";
+      };
+        return "btn btn-block";
+    };
+    
+
+  //end of angular controller
+  });
+
+// to play nice with jinja2 template
+app.config(['$interpolateProvider', function($interpolateProvider) {
+     $interpolateProvider.startSymbol('{[{');
+     $interpolateProvider.endSymbol('}]}');
+   }]);
