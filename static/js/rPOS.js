@@ -16,6 +16,11 @@ app = angular.module('rPOSapp', [])
     rPOS.order = [];
     rPOS.total = 0;
     rPOS.currentCategory = "pick a category";
+    rPOS.currentItem = null;
+    
+    //TESTING
+    rPOS.a = ""
+    rPOS.itemIndex = 0;
     
     //alert some shit
     rPOS.alert = function(message) {
@@ -58,8 +63,14 @@ app = angular.module('rPOSapp', [])
       console.log(item.name + " added to order")
       var orderItem = {
         'item':item,
-        'seat':rPOS.currentSeat
+        'seat':rPOS.currentSeat,
+        //TEST
+        'id':rPOS.itemIndex,
+        'active':false
       }
+      //TEST
+      rPOS.itemIndex += 1;
+      
       rPOS.order.push(orderItem);
       rPOS.total += item.price;
     };
@@ -87,6 +98,32 @@ app = angular.module('rPOSapp', [])
         return "btn btn-success btn-block";
       };
         return "btn btn-block";
+    };
+    
+    //item modifier
+    rPOS.modifyItem = function() {
+      alert('modify method called!');  
+    };
+    
+    rPOS.activate = function(itemIndex) {
+        if (rPOS.order[itemIndex]['active'] == true) {
+            rPOS.order[itemIndex]['active'] = false;
+            rPOS.currentItem = null;
+        } else {
+            rPOS.order[itemIndex]['active'] = true;
+            rPOS.currentItem = rPOS.order[itemIndex];
+        }
+        
+        
+        
+    };
+    
+    rPOS.isItemActive = function(itemIndex) {
+        if (rPOS.order[itemIndex]['active']==true) {
+            return "activeItem";
+        } else {
+            return "";
+        }
     };
     
 
