@@ -1,6 +1,6 @@
 # AngularPOS
 
-A point of sale system built with Python, Flask, AngularJS, and with Bootstrap styling.
+A point of sale UI proof of concept run by Flask, AngularJS, and with Bootstrap styling.
 
 Requirements:
 
