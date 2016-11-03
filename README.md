@@ -1,15 +1,10 @@
-# AngularPOS
+#AngularPOS
 
-A point of sale UI proof of concept run by Flask, AngularJS, and with Bootstrap styling.
+A point of sale UI proof of concept served by Flask, with AngularJS & Bootstrap
 
-Requirements:
-
-Python 2.7
-Flask 0.9
+##How to use
 
 Clone repo and run flask_app.py to start wsgi, then navigate to localhost to use.
-
-How to use the POS:
 
 - Select the seat number of the item you would like to order. Default starting seat is seat #1.
 - Select a category of items
